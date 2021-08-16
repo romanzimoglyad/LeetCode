@@ -4,6 +4,24 @@
 *.dll
 *.so
 *.dylib
+*.tmp
+*.user
+*.exe
+*.code-workspace
+*.log
+*.sql_old
+*.zip
+.idea/*
+./vscode/*
+.vscode/
+.client/
+TestConfig/
+TestConfig/*
+conf.yml
+*__debug_bin*
+/portal-conf.yml
+/root.crt
+key.json
 
 # Test binary, built with `go test -c`
 *.test
