@@ -14,13 +14,24 @@ func main() {
 	test3 := &ListNode{
 		Val: 3,
 	}
+	test4 := &ListNode{
+		Val: 4,
+	}
+	test5 := &ListNode{
+		Val: 5,
+	}
+	/*test33 := &ListNode{
+		Val: 2,
+	}*/
 	test1.Next = test2
 	test2.Next = test3
-	test3.Next = test1
+	test3.Next = test4
+	test4.Next = test5
 	_ = &ListNode{
 		Val: 1,
 	}
-	t1 := hasCycle(nil)
+
+	t1 := oddEvenList(test5)
 	fmt.Println(t1)
 }
 
@@ -31,21 +42,51 @@ func main() {
  *     Next *ListNode
  * }
  */
-func hasCycle(head *ListNode) bool {
-	if head == nil {
-		return false
-	}
-	curNodefast := head
-	curNodeSlow := head
-	for curNodefast.Next != nil && curNodefast.Next.Next != nil {
-		curNodeSlow = curNodeSlow.Next
-		curNodefast = curNodefast.Next.Next
 
-		if curNodeSlow == curNodefast {
-			return true
-		}
+func oddEvenList(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
 	}
-	return false
+	dumb := &ListNode{}
+	dumb.Next = head
+
+	cur := dumb
+	i := 1
+
+	lastOdd := dumb
+	lastEven := &ListNode{}
+	firstEven := &ListNode{}
+	for cur.Next != nil {
+		if i%2 != 0 {
+
+			lastOdd.Next = cur.Next
+			lastOdd = lastOdd.Next
+			cur = cur.Next
+
+		}
+		if i%2 == 0 {
+			if i == 2 {
+				firstEven = cur.Next
+				lastEven = firstEven
+
+				cur = cur.Next
+				i++
+				continue
+			}
+
+			lastEven.Next = cur.Next
+			lastEven = lastEven.Next
+
+			cur = cur.Next
+		}
+		i++
+	}
+
+	if i >= 3 {
+		lastOdd.Next = firstEven
+		lastEven.Next = nil
+	}
+	return dumb.Next
 }
 
 type MyLinkedList struct {

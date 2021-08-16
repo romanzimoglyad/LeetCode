@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-
+	//t := hasCycle(list.head)
 	test1 := &ListNode{
 		Val: 1,
 	}
@@ -12,15 +12,26 @@ func main() {
 	}
 
 	test3 := &ListNode{
-		Val: 3,
+		Val: 2,
 	}
+	test4 := &ListNode{
+		Val: 1,
+	}
+	//test5 := &ListNode{
+	//	Val: 5,
+	//}
+	/*test33 := &ListNode{
+		Val: 2,
+	}*/
 	test1.Next = test2
 	test2.Next = test3
-	test3.Next = test1
+	test3.Next = test4
+	//test4.Next = test5
 	_ = &ListNode{
 		Val: 1,
 	}
-	t1 := hasCycle(nil)
+
+	t1 := isPalindrome(test1)
 	fmt.Println(t1)
 }
 
@@ -31,21 +42,52 @@ func main() {
  *     Next *ListNode
  * }
  */
-func hasCycle(head *ListNode) bool {
+
+func isPalindrome(head *ListNode) bool {
 	if head == nil {
 		return false
 	}
-	curNodefast := head
-	curNodeSlow := head
-	for curNodefast.Next != nil && curNodefast.Next.Next != nil {
-		curNodeSlow = curNodeSlow.Next
-		curNodefast = curNodefast.Next.Next
+	length := 1
+	cur := head
 
-		if curNodeSlow == curNodefast {
-			return true
-		}
+	for cur.Next != nil {
+		length++
+		cur = cur.Next
 	}
-	return false
+	n := length / 2
+	cur = head
+	for t := 0; t < n; t++ {
+		cur = cur.Next
+	}
+	r := reverseList(cur)
+
+	for i := 0; i < n; i++ {
+		if r.Val != head.Val {
+			return false
+		}
+		r = r.Next
+		head = head.Next
+	}
+	return true
+}
+
+func reverseList(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	nF := head
+	oldFirst := head
+	cur := head
+	for cur.Next != nil {
+		nF = cur.Next
+		oN := nF.Next
+		nF.Next = oldFirst
+		cur.Next = oN
+		oldFirst = nF
+
+	}
+	return nF
+
 }
 
 type MyLinkedList struct {

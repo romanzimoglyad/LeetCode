@@ -14,13 +14,24 @@ func main() {
 	test3 := &ListNode{
 		Val: 3,
 	}
+	test11 := &ListNode{
+		Val: 1,
+	}
+	test22 := &ListNode{
+		Val: 2,
+	}
+	/*test33 := &ListNode{
+		Val: 2,
+	}*/
 	test1.Next = test2
 	test2.Next = test3
-	test3.Next = test1
+	test3.Next = test11
+
 	_ = &ListNode{
 		Val: 1,
 	}
-	t1 := hasCycle(nil)
+
+	t1 := removeElements(test22, 1)
 	fmt.Println(t1)
 }
 
@@ -31,21 +42,41 @@ func main() {
  *     Next *ListNode
  * }
  */
-func hasCycle(head *ListNode) bool {
-	if head == nil {
-		return false
-	}
-	curNodefast := head
-	curNodeSlow := head
-	for curNodefast.Next != nil && curNodefast.Next.Next != nil {
-		curNodeSlow = curNodeSlow.Next
-		curNodefast = curNodefast.Next.Next
 
-		if curNodeSlow == curNodefast {
-			return true
+func reverseList(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	nF := head
+	oldFirst := head
+	cur := head
+	for cur.Next != nil {
+		nF = cur.Next
+		oN := nF.Next
+		nF.Next = oldFirst
+		cur.Next = oN
+		oldFirst = nF
+
+	}
+	return nF
+
+}
+func removeElements(head *ListNode, val int) *ListNode {
+	if head == nil {
+		return nil
+	}
+	dumb := &ListNode{}
+	dumb.Next = head
+	head = dumb
+	cur := head
+	for cur.Next != nil {
+		if cur.Next.Val == val {
+			cur.Next = cur.Next.Next
+		} else {
+			cur = cur.Next
 		}
 	}
-	return false
+	return dumb.Next
 }
 
 type MyLinkedList struct {

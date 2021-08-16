@@ -3,11 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	list := Constructor()
-	list.AddAtTail(3)
-	list.AddAtHead(1)
 
-	//t := hasCycle(list.head)
 	test1 := &ListNode{
 		Val: 1,
 	}
