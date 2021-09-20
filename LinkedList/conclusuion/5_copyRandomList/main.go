@@ -6,64 +6,61 @@ import (
 
 func main() {
 	test1 := &Node{
-		Val: 3,
+		Val: 1,
 	}
 	test2 := &Node{
-		Val: 4,
+		Val: 2,
 	}
 
 	test3 := &Node{
-		Val: 1,
+		Val: 3,
 	}
 
 	test1.Next = test2
+	test1.Random = test2
 	test2.Next = test3
-	test3.Next = test1
-	r := insert(test1, 2)
+
+	r := copyRandomList(test1)
 	fmt.Println(r)
 }
 
-func insert(aNode *Node, x int) *Node {
-
-	if aNode == nil {
-		n := &Node{}
-		n.Val = x
-		n.Next = n
-		return n
+func copyRandomList(head *Node) *Node {
+	if head == nil {
+		return nil
 	}
-	newNode := &Node{
-		Val: x,
-	}
-	if aNode.Next == aNode {
-		newNode.Next = aNode
-		aNode.Next = newNode
-		return aNode
-	}
-	ptr := aNode
-	i := 0
-	for {
-		if ptr.Next.Val >= x && ptr.Val <= x {
-			newNode.Next = ptr.Next
-			ptr.Next = newNode
-			return aNode
+	cur := head
+	newHead := &Node{}
+	var newCur = newHead
+	mapping := map[*Node]*Node{}
+	for cur != nil && newCur != nil {
+		if existNode, ok := mapping[cur]; !ok {
+			newCur.Val = cur.Val
+			mapping[cur] = newCur
+		} else {
+			newCur = existNode
 		}
-		if ptr.Next == aNode {
-			if i >= 2 {
-				newNode.Next = ptr.Next
-				ptr.Next = newNode
-				return aNode
+		if existNode, ok := mapping[cur.Next]; !ok && cur.Next != nil {
+			newCurNext := &Node{
+				Val: cur.Next.Val,
 			}
-			i++
+			newCur.Next = newCurNext
+			mapping[cur.Next] = newCurNext
+		} else {
+			newCur.Next = existNode
 		}
-		if ptr.Next.Val < ptr.Val && i >= 2 {
-			newNode.Next = ptr.Next
-			ptr.Next = newNode
-			return aNode
+		if existRandomNode, ok := mapping[cur.Random]; !ok && cur.Random != nil {
+			newCurRandomNext := &Node{
+				Val: cur.Random.Val,
+			}
+			newCur.Random = newCurRandomNext
+			mapping[cur.Random] = newCurRandomNext
+		} else {
+			newCur.Random = existRandomNode
 		}
-
-		ptr = ptr.Next
+		cur = cur.Next
+		newCur = newCur.Next
 	}
-
+	return newHead
 }
 
 type MyLinkedList struct {
@@ -72,9 +69,10 @@ type MyLinkedList struct {
 }
 
 type Node struct {
-	Val  int
-	Next *Node
-	Prev *Node
+	Val    int
+	Next   *Node
+	Random *Node
+	Prev   *Node
 }
 
 /** Initialize your data structure here. */
