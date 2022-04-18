@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 
-	//t := hasCycle(list.head)
+	// t := hasCycle(list.head)
 	test1 := &ListNode{
 		Val: 1,
 	}
@@ -18,15 +18,16 @@ func main() {
 	test11 := &ListNode{
 		Val: 4,
 	}
-	/*test22 := &ListNode{
-		Val: 2,
-	}*/
+	test22 := &ListNode{
+		Val: 5,
+	}
 	/*test33 := &ListNode{
 		Val: 2,
 	}*/
 	test1.Next = test2
 	test2.Next = test3
 	test3.Next = test11
+	test11.Next = test22
 
 	_ = &ListNode{
 		Val: 1,
@@ -45,20 +46,13 @@ func main() {
  */
 
 func reverseList(head *ListNode) *ListNode {
-	if head == nil {
-		return nil
+	if head == nil || head.Next == nil {
+		return head
 	}
-	var prev *ListNode = nil
-	cur := head
-	for cur != nil {
-		next := cur.Next
-		cur.Next = prev
-		prev = cur
-		cur = next
-
-	}
-	return prev
-
+	p := reverseList(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+	return p
 }
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	dum := &ListNode{}

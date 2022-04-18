@@ -40,7 +40,8 @@ func numIslands(grid [][]byte) int {
 			elem := grid[row][column]
 			if elem != water {
 				node := node{
-					row: row,
+					row:    row,
+					column: column,
 				}
 				if _, ok := m[node]; !ok {
 					queue.add(node)
@@ -69,7 +70,7 @@ func numIslands(grid [][]byte) int {
 						}
 
 						m[node] = struct{}{}
-						m[node] = struct{}{}
+
 						queue.add(node)
 					}
 				}
