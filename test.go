@@ -2,12 +2,20 @@ package main
 
 import "fmt"
 
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
+
 func main() {
-	m := make(map[int]int)
-	m[1] = 2
-	fmt.Println(m[1])
-	t := m[1]
-	fmt.Println(t)
-	fmt.Println(&t)
-	fmt.Println(*&t)
+	pos, neg := adder(), adder()
+	for i := 0; i < 10; i++ {
+		fmt.Println(
+			pos(i),
+			neg(-2*i),
+		)
+	}
 }
