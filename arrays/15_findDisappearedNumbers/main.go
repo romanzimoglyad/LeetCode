@@ -44,7 +44,7 @@ func findDisappearedNumbers1(nums []int) []int {
 	return missing_numbers
 }
 func findDisappearedNumbers2(nums []int) []int {
-	//fmt.Println(nums)
+	// fmt.Println(nums)
 	for i := 0; i < len(nums); {
 		pos := nums[i] - 1
 		if i != pos {
@@ -54,7 +54,7 @@ func findDisappearedNumbers2(nums []int) []int {
 		}
 	}
 
-	//fmt.Println(nums)
+	// fmt.Println(nums)
 
 	miss := make([]int, 0, 0)
 
@@ -63,6 +63,6 @@ func findDisappearedNumbers2(nums []int) []int {
 			miss = append(miss, i+1)
 		}
 	}
-	//fmt.Println(miss)
+	// fmt.Println(miss)
 	return miss
 }
