@@ -3,68 +3,68 @@ package main
 import "fmt"
 
 func main() {
+	list := Constructor()
+
+	list.AddAtTail(1)
+	list.AddAtTail(6)
+	list.AddAtTail(9)
 
 	test1 := &ListNode{
-		Val: 1,
+		Val: 2,
 	}
 	test2 := &ListNode{
-		Val: 2,
+		Val: 7,
 	}
 
 	test3 := &ListNode{
-		Val: 3,
+		Val: 26,
 	}
-	test11 := &ListNode{
-		Val: 1,
-	}
-	test22 := &ListNode{
-		Val: 2,
-	}
-	/*test33 := &ListNode{
-		Val: 2,
-	}*/
 	test1.Next = test2
 	test2.Next = test3
-
-	test11.Next = test22
-	test22.Next = test3
-
-	_ = &ListNode{
-		Val: 1,
-	}
-
-	t1 := removeNthFromEnd(test1, 2)
-	fmt.Println(t1)
+	r := mergeTwoLists(list.head, test1)
+	fmt.Println(r)
 }
 
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	dum := &ListNode{}
-	dum.Next = head
-	cur1 := dum
-	cur2 := dum
-	for i := 0; i <= n; i++ {
-		cur1 = cur1.Next
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+	res := &ListNode{}
+	tail := res
+	cur1 := list1
+	cur2 := list2
+	for cur1 != nil || cur2 != nil {
+		if cur1 == nil && cur2 == nil {
+			return res
+		}
+		if cur1 == nil {
+			tail.Next = &ListNode{Val: cur2.Val}
+			tail = tail.Next
+			cur2 = cur2.Next
+			continue
+		}
+		if cur2 == nil {
+			tail.Next = &ListNode{Val: cur1.Val}
+			tail = tail.Next
+			cur1 = cur1.Next
+			continue
+		}
+		if cur1.Val <= cur2.Val {
+			tail.Next = &ListNode{Val: cur1.Val}
+			tail = tail.Next
+			cur1 = cur1.Next
+			continue
+		}
+		if cur1.Val > cur2.Val {
+			tail.Next = &ListNode{Val: cur2.Val}
+			tail = tail.Next
+			cur2 = cur2.Next
+		}
 	}
-	for cur1 != nil {
-		cur1 = cur1.Next
-		cur2 = cur2.Next
-	}
-	cur2.Next = cur2.Next.Next
-	return dum.Next
+	return res.Next
 }
 
 type MyLinkedList struct {
 	length int
 	head   *ListNode
 }
-
 type ListNode struct {
 	Val  int
 	Next *ListNode
