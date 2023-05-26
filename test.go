@@ -2,19 +2,15 @@ package main
 
 import (
 	"fmt"
-	"runtime"
+	"time"
 )
 
 func main() {
-	runtime.GOMAXPROCS(1)
-
-	done := false
-
-	go func() {
-		done = true
-	}()
-
-	for !done {
+	values := []int{1, 2, 3, 4, 5}
+	for _, val := range values {
+		go func(val int) {
+			fmt.Println(val)
+		}(val)
 	}
-	fmt.Println("finished")
+	time.Sleep(100 * time.Millisecond)
 }

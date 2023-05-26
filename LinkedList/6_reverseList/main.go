@@ -15,9 +15,10 @@ func main() {
 	test3 := &ListNode{
 		Val: 3,
 	}
-	test11 := &ListNode{
-		Val: 4,
-	}
+	/*
+		test11 := &ListNode{
+			Val: 4,
+		}*/
 	/*test22 := &ListNode{
 		Val: 2,
 	}*/
@@ -26,13 +27,12 @@ func main() {
 	}*/
 	test1.Next = test2
 	test2.Next = test3
-	test3.Next = test11
 
 	_ = &ListNode{
 		Val: 1,
 	}
 
-	t1 := reverseList(test1)
+	t1 := reverseList3(test1)
 	fmt.Println(t1)
 }
 
@@ -44,6 +44,28 @@ func main() {
  * }
  */
 
+func reverseList3(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	// len >=2 case
+	prev, current, forward := head, head.Next, head.Next.Next
+	prev.Next = nil
+
+	for {
+		current.Next = prev
+
+		if forward == nil {
+			break
+		}
+
+		prev = current
+		current = forward
+		forward = forward.Next
+	}
+
+	return current
+}
 func reverseList(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
@@ -58,7 +80,18 @@ func reverseList(head *ListNode) *ListNode {
 
 	}
 	return prev
+}
 
+func reverseList1(head *ListNode) *ListNode {
+	cur := head
+	var previous *ListNode
+
+	for cur != nil {
+		cur.Next = previous
+		previous = cur
+		cur = cur.Next
+	}
+	return previous
 }
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	dum := &ListNode{}

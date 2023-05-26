@@ -21,9 +21,7 @@ func main() {
 	test22 := &ListNode{
 		Val: 5,
 	}
-	/*test33 := &ListNode{
-		Val: 2,
-	}*/
+
 	test1.Next = test2
 	test2.Next = test3
 	test3.Next = test11
@@ -33,9 +31,38 @@ func main() {
 		Val: 1,
 	}
 
-	t1 := reverseList(test1)
+	t1 := reverseListt(test1)
 	fmt.Println(t1)
 }
+
+func reverseList3(head *ListNode) (*ListNode, *ListNode) {
+	if head.Next == nil {
+		return head,head
+	}
+	r1, t1 := reverseList3(head.Next)
+	t1.Next = head
+	head.Next = nil
+	return r1, head
+}
+
+func reverseListt(head *ListNode) *ListNode {
+	newHead, _ := reverseList3(head)
+	return newHead
+}
+
+func reverseList2(head *ListNode) *ListNode {
+	if head.Next == nil {
+		return head
+	}
+	r1 := reverseList2(head.Next)
+
+	for tail := r1;tail.Next!=nil; tail=tail.Next {
+	}
+	r1.Next = head
+	head.Next = nil
+	return r1
+}
+
 
 /**
  * Definition for singly-linked list.
@@ -54,6 +81,7 @@ func reverseList(head *ListNode) *ListNode {
 	head.Next = nil
 	return p
 }
+
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	dum := &ListNode{}
 	dum.Next = head

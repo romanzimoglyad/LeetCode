@@ -2,28 +2,29 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"os/signal"
 )
 
-func main() {
-	testCh := make(chan string)
+type MyError struct{}
 
-	go func(chan string) {
-		t := <-testCh
-		fmt.Println("1_findMaxConsecutiveOnes" + t)
-	}(testCh)
-	go func(chan string) {
-		t := <-testCh
-		fmt.Println("2_findEvenNumbers" + t)
-	}(testCh)
-	go func(chan string) {
-		t := <-testCh
-		fmt.Println("3_SortedSquares" + t)
-	}(testCh)
-	close(testCh)
-	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, os.Interrupt)
-	_ = <-sigs
-	fmt.Println("Получен сигнал:. Остановка приложения.")
+func (err *MyError) errorHandler() {
+	if err != nil {
+		fmt.Println("Error Method:", err)
+	}
+}
+func (MyError) Error() string { return "MyError!" }
+
+func errorHandler(err error) {
+	if err != nil {
+		fmt.Println("errorHandler function:", err)
+	}
+}
+
+func main() {
+	var err *MyError
+	err.errorHandler()
+	errorHandler(err)
+
+	err = &MyError{}
+	err.errorHandler()
+	errorHandler(err)
 }
