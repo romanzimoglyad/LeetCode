@@ -8,16 +8,19 @@ import (
 )
 
 func main() {
-	m := make(map[string]int)
-	m["key"] = 1
-	v := m["key"]
-
-	str := "asd"
-	p := &m["key"]
-	t := &str
-
-	fmt.Println(p)
+	var p *int
+	t := 1
+	p = &t
+	k := &p
+	*p = 4
 	fmt.Println(t)
+	fmt.Println(*p)
+	fmt.Println(k)
+	b := 3
+	v := &b
+	*k = v
+	fmt.Println(k)
+	fmt.Println(*p)
 }
 
 func worker() chan int {

@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	testArr := []int{0, 0, 0}
+	testArr := []int{1, 0, 2}
 	duplicateZeros(testArr)
 	fmt.Println(testArr)
 }

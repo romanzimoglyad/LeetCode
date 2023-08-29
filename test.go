@@ -1,16 +1,17 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
 func main() {
-	values := []int{1, 2, 3, 4, 5}
-	for _, val := range values {
-		go func(val int) {
-			fmt.Println(val)
-		}(val)
-	}
-	time.Sleep(100 * time.Millisecond)
+	var p float64
+	p = 5.5
+	fmt.Println(fmt.Sprintf("%.0f", p))
+	p = 5.2
+	fmt.Println(fmt.Sprintf("%.0f", p))
+	p = 5.8
+	fmt.Println(fmt.Sprintf("%.0f", p))
+}
+
+func test(m map[string]string) {
+
 }
