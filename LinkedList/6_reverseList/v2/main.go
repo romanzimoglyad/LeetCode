@@ -37,7 +37,7 @@ func main() {
 
 func reverseList3(head *ListNode) (*ListNode, *ListNode) {
 	if head.Next == nil {
-		return head,head
+		return head, head
 	}
 	r1, t1 := reverseList3(head.Next)
 	t1.Next = head
@@ -56,13 +56,12 @@ func reverseList2(head *ListNode) *ListNode {
 	}
 	r1 := reverseList2(head.Next)
 
-	for tail := r1;tail.Next!=nil; tail=tail.Next {
+	for tail := r1; tail.Next != nil; tail = tail.Next {
 	}
 	r1.Next = head
 	head.Next = nil
 	return r1
 }
-
 
 /**
  * Definition for singly-linked list.
@@ -71,7 +70,8 @@ func reverseList2(head *ListNode) *ListNode {
  *     Next *ListNode
  * }
  */
-
+//1 ->2 ->3 ->4-> 5
+//nil<-1 <-2 <- 3 <-4 <-5
 func reverseList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
