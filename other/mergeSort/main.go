@@ -3,27 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	data := []int{9, 2, 7, 5, 8, 1, 6, 3, 9, 33, 0}
+	data := []int{9, 2}
 	fmt.Printf("%v\n%v\n", data, MergeSort(data))
 
-/*	data1 := []int{1, 5, 8}
-	data2 := []int{2, 6, 10}
-	fmt.Println(Merge1(data1, data2))*/
+	/*	data1 := []int{1, 5, 8}
+		data2 := []int{2, 6, 10}
+		fmt.Println(Merge1(data1, data2))*/
 }
 
-
 func MergeSort(data []int) []int {
-	if len(data) == 0 {
+	if len(data) == 0 || len(data) == 1 {
 		return data
 	}
 	mid := len(data) / 2
 	left := MergeSort(data[:mid])
 	right := MergeSort(data[mid:])
-	return merge(left, right)
+	return merge1(left, right)
 }
 
-
-func Merge(left []int, right []int) []int {
+func merge22(left []int, right []int) []int {
 	res := make([]int, 0, len(left)+len(right))
 	for len(left) > 0 || len(right) > 0 {
 		if len(left) == 0 {
@@ -43,7 +41,7 @@ func Merge(left []int, right []int) []int {
 	}
 	return res
 }
-func merge(a []int, b []int) []int {
+func merge1(a []int, b []int) []int {
 	final := []int{}
 	i := 0
 	j := 0
