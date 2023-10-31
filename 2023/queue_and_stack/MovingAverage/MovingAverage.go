@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	r := Constructor(1)
-	fmt.Println(r.Next(4))
+	fmt.Println(r.Next(41))
 	fmt.Println(r.Next(0))
 
 }
