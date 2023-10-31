@@ -106,5 +106,4 @@ func isUniVal(root *TreeNode, count *int) bool {
 		return true
 	}
 	return false
-
 }

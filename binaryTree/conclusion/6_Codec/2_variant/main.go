@@ -7,20 +7,44 @@ import (
 )
 
 func main() {
-
-	n2 := &TreeNode{
-		Val:   2,
+	tn5 := &TreeNode{
+		Val:   5,
 		Left:  nil,
 		Right: nil,
 	}
+	tn6 := &TreeNode{
+		Val:   6,
+		Left:  nil,
+		Right: nil,
+	}
+	tn7 := &TreeNode{
+		Val:   7,
+		Left:  nil,
+		Right: nil,
+	}
+	tn4 := &TreeNode{
+		Val:   4,
+		Left:  nil,
+		Right: nil,
+	}
+	tn3 := &TreeNode{
+		Val:   3,
+		Left:  tn6,
+		Right: tn7}
 
-	n1 := &TreeNode{
-		Val:  1,
-		Left: n2,
+	tn2 := &TreeNode{
+		Val:   2,
+		Left:  tn4,
+		Right: tn5,
+	}
+	tn1 := &TreeNode{
+		Val:   1,
+		Left:  tn2,
+		Right: tn3,
 	}
 	ser := Constructor()
 
-	data := ser.serialize(n1)
+	data := ser.serialize(tn1)
 	fmt.Println(data)
 	ans := ser.deserialize(data)
 	fmt.Println(ans)
