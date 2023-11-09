@@ -8,19 +8,9 @@ import (
 )
 
 func main() {
-	var p *int
-	t := 1
-	p = &t
-	k := &p
-	*p = 4
-	fmt.Println(t)
-	fmt.Println(*p)
-	fmt.Println(k)
-	b := 3
-	v := &b
-	*k = v
-	fmt.Println(k)
-	fmt.Println(*p)
+	travelPointsClientStartTime := time.Now()
+	time.Sleep(1 * time.Second)
+	fmt.Println(time.Since(travelPointsClientStartTime))
 }
 
 func worker() chan int {
