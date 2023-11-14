@@ -126,7 +126,6 @@ type queue struct {
 func (q *queue) Len() int { return len(q.arr) }
 func (q *queue) Push(el *[4]int) {
 	q.arr = append(q.arr, el)
-	l.
 }
 func (q *queue) Pop() *[4]int {
 	if q.Len() == 0 {
