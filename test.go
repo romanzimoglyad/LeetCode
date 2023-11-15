@@ -1,18 +1,18 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
+
+func f(s []string, level int) {
+	a := []int{1, 2, 3}
+	b := a
+	b[0] = 111
+	fmt.Println(a)
+	fmt.Println(b)
+}
 
 func main() {
-	var prints []func()
-	for i := 1; i <= 3; i++ {
-		prints = append(prints, func() { fmt.Println(i) })
-	}
-	for _, print := range prints {
-		print()
-	}
-}
-func desc(s []int) {
-	fmt.Printf("len(%d), cap(%d),arr:%v\n", len(s), cap(s), s)
+	var t []int
+	fmt.Println(t)
+	t = append(t, 1)
+	fmt.Println(t)
 }
