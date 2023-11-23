@@ -1,18 +1,15 @@
 package main
 
-import "fmt"
-
-func f(s []string, level int) {
-	a := []int{1, 2, 3}
-	b := a
-	b[0] = 111
-	fmt.Println(a)
-	fmt.Println(b)
-}
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
-	var t []int
-	fmt.Println(t)
-	t = append(t, 1)
-	fmt.Println(t)
+	n := 1
+	for 100*n*n >= int(math.Pow(2, float64(n))) {
+		n++
+	}
+
+	fmt.Println("The smallest n where 100n^2 < 2^n is approximately:", n)
 }
