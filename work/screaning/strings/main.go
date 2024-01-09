@@ -11,9 +11,9 @@ func main() {
 
 /**
 func test1(){
-	s := "test"
+	s := "hello"
 	println(s[0]) // ответ кандидата
-	s[0] = "R"
+	s[0] = "H"
 	println(s) /
 }
 

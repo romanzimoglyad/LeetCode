@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	data := []int{9, 2}
@@ -39,8 +42,10 @@ func merge2(left []int, right []int) []int {
 			right = right[1:]
 		}
 	}
+	math.Max(len(left), 2)
 	return res
 }
+
 func merge1(a []int, b []int) []int {
 	final := []int{}
 	i := 0
