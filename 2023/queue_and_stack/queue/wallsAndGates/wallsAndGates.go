@@ -60,7 +60,7 @@ func wallsAndGates(rooms [][]int) {
 //
 //func dfs(i, j int, rooms [][]int) {
 //	el := newElem( i, j)
-//	q := queue{}
+//	q := queue_stack{}
 //	q.Push(el)
 //	visited := make(map[[2]int]struct{})
 //	pathLen := 0

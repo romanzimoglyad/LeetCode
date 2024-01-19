@@ -4,11 +4,11 @@ import "fmt"
 
 func main() {
 	myQueue := Constructor()
-	myQueue.Push(1)             // queue is: [1]
-	myQueue.Push(2)             // queue is: [1, 2] (leftmost is front of the queue)
-	fmt.Println(myQueue.Peek()) // return 1
-	fmt.Println(myQueue.Pop() )              // return 1, queue is [2]
-	fmt.Println(myQueue.Empty()     )        // return false
+	myQueue.Push(1)              // queue_stack is: [1]
+	myQueue.Push(2)              // queue_stack is: [1, 2] (leftmost is front of the queue_stack)
+	fmt.Println(myQueue.Peek())  // return 1
+	fmt.Println(myQueue.Pop())   // return 1, queue_stack is [2]
+	fmt.Println(myQueue.Empty()) // return false
 }
 
 type MyQueue struct {
