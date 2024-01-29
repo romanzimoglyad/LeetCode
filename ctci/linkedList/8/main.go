@@ -1,7 +1,10 @@
 package main
 
 import "fmt"
+1 -> 2 -> 3 -> 4  -5 -> 2
 
+
+a + kb = b
 func main() {
 	n4 := &Node{
 		val: 4,
