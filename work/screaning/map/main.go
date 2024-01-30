@@ -4,7 +4,10 @@ import "fmt"
 
 // Взятие адреса элемента map.
 func main() {
-	m := make(map[int]int)
-	defer (fmt.Println(1))
-	defer (fmt.Println(2))
+	m := map[string]int{"a": 1, "b": 2, "c": 3}
+
+	for a, b := range m {
+		fmt.Println(a, b)
+	}
+
 }
