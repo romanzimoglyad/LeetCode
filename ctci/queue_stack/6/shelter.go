@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	s := Schelter{l: singlylinkedlist.New()}
+	s := Shelter[Animal]{l: singlylinkedlist.New()}
 	s.Enque(Cat{})
 	s.Enque(Cat{})
 	s.Enque(Dog{})
@@ -39,35 +39,32 @@ type Dog struct {
 func (c Dog) isDog() bool { return true }
 func (c Dog) isCat() bool { return false }
 
-type Schelter struct {
+type Shelter[K Animal] struct {
 	l *singlylinkedlist.List
 }
 
-func (s Schelter) Enque(el Animal) {
+func (s Shelter[K]) Enque(el K) {
 	s.l.Add(el)
 }
 
-func (s Schelter) Get() Animal {
+func (s Shelter[K]) Get() K {
 	el, ok := s.l.Get(0)
 	if !ok {
-		return nil
+		panic("asd")
 	}
-	an, ok := el.(Animal)
-	if !ok {
-		return nil
-	}
+	p := el.(K)
 	s.l.Remove(0)
-	return an
+	return p
 }
 
-func (s Schelter) GetDog() Animal {
+func (s Shelter[K]) GetDog() Animal {
 	return s.getByType("dog")
 }
-func (s Schelter) GetCat() Animal {
+func (s Shelter[K]) GetCat() Animal {
 	return s.getByType("cat")
 }
 
-func (s Schelter) getByType(t string) Animal {
+func (s Shelter[K]) getByType(t string) Animal {
 	index := 0
 	for index < s.l.Size() {
 		el, ok := s.l.Get(index)
