@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type MyError struct{}
 
@@ -9,7 +11,7 @@ func (err *MyError) errorHandler() {
 		fmt.Println("Error Method:", err)
 	}
 }
-func (MyError) Error() string { return "MyError!" }
+func (*MyError) Error() string { return "MyError!" }
 
 func errorHandler(err error) {
 	if err != nil {
