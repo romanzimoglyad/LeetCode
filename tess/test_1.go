@@ -1,39 +1,38 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+	"time"
+)
 
-type T struct{}
+func parseDuration(durationString string) (time.Duration, error) {
+	parts := strings.Split(durationString, "d")
+	if len(parts) != 2 {
+		return 0, fmt.Errorf("invalid duration format")
+	}
+
+	days, err := time.ParseDuration(parts[0] + "h")
+	if err != nil {
+		return 0, err
+	}
+
+	rest, err := time.ParseDuration(parts[1])
+	if err != nil {
+		return 0, err
+	}
+
+	return days + rest, nil
+}
 
 func main() {
-	var t *T
-	v := T{}
-	t = &v
-	test(t)
-	test(v)
-	fmt.Println(t == nil) // true
+	durationString := "2d3h30m15s" // Example duration string: 2 days, 3 hours, 30 minutes, and 15 seconds
 
-	fmt.Println(t.ReturnNum()) // 2
+	duration, err := parseDuration(durationString)
+	if err != nil {
+		fmt.Println("Error parsing duration:", err)
+		return
+	}
 
-	var n N
-	fmt.Println(n == nil)      // true
-	fmt.Println(n.ReturnNum()) // panic
-	n = t
-	fmt.Println(n == nil)      // false
-	fmt.Println(n.ReturnNum()) // 2
-
-	test(n)
-
-}
-
-func test(n N) {
-
-}
-
-type N interface {
-	ReturnNum() int
-	ReturnNum() int
-}
-
-func (t *T) ReturnNum() int {
-	return 2
+	fmt.Println("Duration:", duration)
 }
