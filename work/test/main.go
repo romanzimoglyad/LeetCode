@@ -4,23 +4,12 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
-type Parent struct{}
-
-func (c *Parent) Print() {
-	fmt.Println("parent")
-}
-
-type Child struct {
-	Parent
-}
-
-func (p *Child) Print() {
-	fmt.Println("child")
-}
-
 func main() {
-	var x Child
-	x.Parent.Print()
+	durationLayout := "15:04:05"
+	duration, err := time.Parse(durationLayout, "24:22:11")
+	fmt.Println(err)
+	fmt.Println(duration)
 }
