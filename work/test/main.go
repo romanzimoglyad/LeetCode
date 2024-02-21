@@ -4,12 +4,11 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main() {
-	durationLayout := "15:04:05"
-	duration, err := time.Parse(durationLayout, "24:22:11")
-	fmt.Println(err)
-	fmt.Println(duration)
+	var test float64
+	test = 164000000
+	g := fmt.Sprintf("%.2f", test)
+	fmt.Println(g)
 }
