@@ -4,11 +4,12 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	var test float64
-	test = 164000000
-	g := fmt.Sprintf("%.2f", test)
-	fmt.Println(g)
+	test := "Победа (рейс выполняет туруру)"
+	test = strings.ReplaceAll(test, " (", ", ")
+	test = strings.ReplaceAll(test, ")", "")
+	fmt.Println(test)
 }
