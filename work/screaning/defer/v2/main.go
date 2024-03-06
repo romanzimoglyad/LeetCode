@@ -5,7 +5,7 @@ import "fmt"
 
 func deferLogic(i int) (result int) {
 	defer func() {
-		result = result + 7
+		result = result + 7_build_prder
 	}()
 	defer func() {
 		result = result * 2

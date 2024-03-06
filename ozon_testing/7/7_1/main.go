@@ -25,7 +25,7 @@ func main() {
 		log.Println(err)
 	}
 	fmt.Println(path)
-	f, err := os.Open("ozon_testing/7/7_1/file.txt")
+	f, err := os.Open("ozon_testing/7_build_prder/7_1/file.txt")
 	defer f.Close()
 	if err != nil {
 		log.Fatal(err)

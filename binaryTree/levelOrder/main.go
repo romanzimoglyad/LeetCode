@@ -38,7 +38,7 @@ func main() {
 		Left:  tn2,
 		Right: tn3,
 	}
-	//1,2,3,4,5,6,7
+	//1,2,3,4,5,6,7_build_prder
 	res := levelOrder(tn1)
 	fmt.Println(res)
 }
