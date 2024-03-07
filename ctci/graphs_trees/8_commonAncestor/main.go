@@ -1,4 +1,4 @@
-package commonAncestor
+package __commonAncestor
 
 type TreeNode struct {
 	Val   int
