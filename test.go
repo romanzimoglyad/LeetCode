@@ -36,18 +36,28 @@ func secondMicroservice(ctx context.Context) <-chan struct{} {
 }
 
 func main() {
-	fmt.Println(time.Now(), "start")
-	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(5*time.Second))
-	defer cancel()
+	var time1 time.Time
+	var time2 time.Time
+	time1, _ = time.Parse(time.RFC3339, "2023-07-21T01:00:05Z")
+	time2, _ = time.Parse(time.RFC3339, "2023-07-22T23:59:05Z")
 
-	// Call the first microservice with the original context
-	firstMicroservice(ctx)
+	timeWithoutTime := time.Date(time1.Year(), time1.Month(), time1.Day(), 0, 0, 0, 0, time1.Location())
+	dateWithoutTime2 := time.Date(time2.Year(), time2.Month(), time2.Day(), 0, 0, 0, 0, time2.Location())
+	days := dateWithoutTime2.Sub(timeWithoutTime).Hours() / 24
+	fmt.Println(days)
 
-	//// Change the deadline of the context
-	//newCtx, newCancel := context.WithDeadline(ctx, time.Now().Add(2*time.Second))
-	//defer newCancel()
-	//
-	//// Call the second microservice with the new context
-	//secondMicroservice(newCtx)
-	time.Sleep(10 * time.Second)
+	time1, _ = time.Parse(time.RFC3339, "2023-07-21T01:00:05Z")
+	time2, _ = time.Parse(time.RFC3339, "2023-07-22T01:59:05Z")
+	timeWithoutTime = time.Date(time1.Year(), time1.Month(), time1.Day(), 0, 0, 0, 0, time1.Location())
+	dateWithoutTime2 = time.Date(time2.Year(), time2.Month(), time2.Day(), 0, 0, 0, 0, time2.Location())
+	days = dateWithoutTime2.Sub(timeWithoutTime).Hours() / 24
+	fmt.Println(days)
+
+	time1, _ = time.Parse(time.RFC3339, "2023-07-21T23:00:05Z")
+	time2, _ = time.Parse(time.RFC3339, "2023-07-23T01:59:05Z")
+	timeWithoutTime = time.Date(time1.Year(), time1.Month(), time1.Day(), 0, 0, 0, 0, time1.Location())
+	dateWithoutTime2 = time.Date(time2.Year(), time2.Month(), time2.Day(), 0, 0, 0, 0, time2.Location())
+	days = dateWithoutTime2.Sub(timeWithoutTime).Hours() / 24
+	fmt.Println(days)
+
 }
