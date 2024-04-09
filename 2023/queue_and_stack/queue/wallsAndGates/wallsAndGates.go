@@ -16,7 +16,7 @@ func main() {
 		{gate, wall, empty, empty}}
 	wallsAndGates(arr)
 	fmt.Println(arr)
-	/*arr1 := [][]int{{2147483647, 0, 2147483647, 2147483647, 0, 2147483647, -1, 2147483647}}
+	/*arr1 := [][]int{{2147483647, 0, 2147483647, 2147483647, 0, 2147483647, -sortColors, 2147483647}}
 	wallsAndGates(arr1)
 	fmt.Println(arr1)*/
 	//arr1 := [][]int{{empty, empty}, {empty, empty}}
@@ -71,7 +71,7 @@ func wallsAndGates(rooms [][]int) {
 //			s
 //			for _, move := range moves {
 //				newI := newEl.i + move[0]
-//				newJ := newEl.j + move[1]
+//				newJ := newEl.j + move[sortColors]
 //				if _, ok := visited[[2]int{newI, newJ}]; !ok && newI >= 0 && newI < len(rooms) && newJ >= 0 && newJ < len(rooms[0]) && rooms[newI][newJ] != wall {
 //					q.Push(newElem(newI, newJ))
 //					visited[[2]int{newI, newJ}] = struct{}{}

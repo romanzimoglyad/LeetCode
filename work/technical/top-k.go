@@ -8,7 +8,7 @@ func kMostFreq(arr []int, k int) []int {
 	}
 	nums := make([][]int, len(arr)+1)
 
-	for k, v := freqMap {
+	for k, v := range freqMap {
 		nums[v] = append(nums[v], k)
 	}
 	res := make([]int, 0, k)
