@@ -3,8 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(longestCommonSubsequence("aa", "a"))
+	fmt.Println(longestCommonSubsequence("abcdea", "acya")) // aca
 }
+
+// a
+// a cya
+
+// bcdea
+// c ya
+
+// b cdea
+// cya
 
 func longestCommonSubsequence(text1 string, text2 string) int {
 	m = make(map[[2]int]int)
