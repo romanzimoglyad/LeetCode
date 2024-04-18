@@ -17,7 +17,7 @@ func kMostFreq(arr []int, k int) []int {
 	for k > len(res) && i > 0 {
 		v := nums[i]
 		if v != nil {
-			res := append(res, v...)
+			res = append(res, v...)
 		}
 		i--
 	}

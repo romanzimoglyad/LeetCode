@@ -44,6 +44,10 @@ func main() {
  *     Next *ListNode
  * }
  */
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
 func reverseListRec(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
@@ -74,11 +78,6 @@ func reverseList(head *ListNode) *ListNode {
 type MyLinkedList struct {
 	length int
 	head   *ListNode
-}
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
 }
 
 /** Initialize your data structure here. */
