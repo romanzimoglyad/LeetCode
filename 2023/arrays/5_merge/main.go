@@ -7,6 +7,8 @@ func main() {
 	nums2 := []int{2, 4}
 	merge(nums1, 3, nums2, 2)
 	fmt.Println(nums1)
+	t := max(1, 5)
+	fmt.Println(t)
 }
 
 func merge(nums1 []int, m int, nums2 []int, n int) {

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type Person struct {
 	ID   int    `db:"id"`
@@ -8,13 +11,13 @@ type Person struct {
 	Age  int    `db:"age"`
 }
 
+const format = "2006-01-02 15:04:05 +0000 UTC"
+
 func main() {
-	testArr := make([]int, 0, 5)
-	testArr = append(testArr, 1)
-	fmt.Println(len(testArr))
-	add(testArr)
-	fmt.Println(len(testArr))
-	fmt.Println(testArr)
+	t := "2023-11-28 16:00:00 +0000 UTC"
+	dateAccrual, err := time.Parse(format, t)
+	fmt.Println(err)
+	fmt.Println(dateAccrual)
 }
 
 func add(arr []int) {
