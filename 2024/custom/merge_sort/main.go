@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	test := []int{1, 10, 5, 7, 11, 555, 6, 4}
+	test := []int{1, 10, 5, 7, 11, 555, 1, 5, 110, 10, 10, 5}
 	fmt.Println(mergeSort(test))
 }
 
@@ -35,10 +35,8 @@ func merge(a, b []int) []int {
 			j++
 		}
 	}
-	if i == l1 {
-		res = append(res, b[j:]...)
-	} else {
-		res = append(res, a[i:]...)
-	}
+	res = append(res, b[j:]...)
+	res = append(res, a[i:]...)
+
 	return res
 }
